@@ -1,0 +1,19 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "app.py",
+      "use": "@vercel/python"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/app.py"
+    }
+  ],
+  "env": {
+    "ADMIN_PASSWORD": "HR1234",
+    "SECRET_KEY": "haley-reynolds-dance-website-secret"
+  }
+}

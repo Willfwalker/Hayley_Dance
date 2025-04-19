@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Messages - Haley Reynolds</title>
+    <style>
+        :root {
+            --primary: #000000;
+            --accent: #d4af37;
+            --light: #ffffff;
+            --light-gray: #f8f8f8;
+            --medium-gray: #e0e0e0;
+            --dark-gray: #333333;
+            --font-main: 'Playfair Display', serif;
+            --font-body: 'Raleway', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-body);
+            color: var(--dark-gray);
+            line-height: 1.7;
+            background-color: var(--light-gray);
+            padding: 2rem;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: var(--font-main);
+            font-weight: 400;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: var(--light);
+            padding: 2rem;
+            border-radius: 5px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--medium-gray);
+        }
+
+        .header h1 {
+            color: var(--primary);
+        }
+
+        .header h1 span {
+            color: var(--accent);
+        }
+
+        .header-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .back-link, .logout-link {
+            text-decoration: none;
+            color: var(--accent);
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .back-link:hover, .logout-link:hover {
+            color: var(--primary);
+        }
+
+        .logout-link {
+            color: #c62828;
+        }
+
+        .message-list {
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        .message-card {
+            background-color: var(--light);
+            border: 1px solid var(--medium-gray);
+            border-radius: 5px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .message-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--medium-gray);
+        }
+
+        .message-sender {
+            font-weight: 600;
+        }
+
+        .message-time {
+            color: var(--dark-gray);
+            font-size: 0.9rem;
+        }
+
+        .message-subject {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+
+        .message-email {
+            color: var(--accent);
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .message-content {
+            white-space: pre-wrap;
+        }
+
+        .no-messages {
+            text-align: center;
+            padding: 3rem;
+            color: var(--dark-gray);
+            font-style: italic;
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;700&family=Raleway:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>HALEY <span>REYNOLDS</span> - Messages</h1>
+            <div class="header-links">
+                <a href="/" class="back-link">← Back to Website</a>
+                <a href="/logout" class="logout-link">Logout</a>
+            </div>
+        </div>
+
+        {% if messages %}
+            <div class="message-list">
+                {% for message in messages|reverse %}
+                    <div class="message-card">
+                        <div class="message-header">
+                            <div class="message-sender">{{ message.name }}</div>
+                            <div class="message-time">{{ message.timestamp }}</div>
+                        </div>
+                        <div class="message-subject">{{ message.subject }}</div>
+                        <div class="message-email">{{ message.email }}</div>
+                        <div class="message-content">{{ message.message }}</div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <div class="no-messages">
+                <p>No messages received yet.</p>
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>
